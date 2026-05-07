@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeStream - Premium Music</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div class="glass-overlay"></div>
+
+    <div id="app">
+        <!-- Auth Container -->
+        <div id="auth-container" class="active glass-panel">
+            <div class="auth-box">
+                <div class="logo-glow">
+                    <i class="fas fa-headphones-alt auth-logo"></i>
+                </div>
+                <h2>Welcome to VibeStream</h2>
+                <p class="subtitle">Experience music like never before</p>
+                <form id="login-form">
+                    <div class="input-group">
+                        <input type="text" id="username" placeholder="Username or Email" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="gradient-btn">ENTER VIBE</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main Dashboard -->
+        <div id="dashboard-container" class="hidden">
+            <div class="main-wrapper">
+                <!-- Sidebar -->
+                <aside class="sidebar glass-panel">
+                    <div class="sidebar-logo">
+                        <i class="fas fa-headphones-alt"></i> <span>VibeStream</span>
+                    </div>
+                    <ul class="nav-links">
+                        <li class="active" data-view="home"><i class="fas fa-home"></i> <span>Home</span></li>
+                        <li data-view="search"><i class="fas fa-search"></i> <span>Search</span></li>
+                        <li data-view="library"><i class="fas fa-book-open"></i> <span>Library</span></li>
+                    </ul>
+                    <hr class="sidebar-divider">
+                    <div class="playlists-scroll">
+                        <h4>YOUR PLAYLISTS</h4>
+                        <p class="playlist-item" data-query="lofi">Lofi Chill</p>
+                        <p class="playlist-item" data-query="pop hits">Top Hits</p>
+                        <p class="playlist-item" data-query="synthwave">Synthwave</p>
+                        <p class="playlist-item" data-query="jazz">Late Night Jazz</p>
+                        <p class="playlist-item" data-query="rock">Rock Classics</p>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="main-content glass-panel">
+                    <header class="topbar">
+                        <div class="search-container hidden" id="search-bar-container">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="search-input" placeholder="Search for artists, songs, or albums...">
+                        </div>
+                        <div class="topbar-user">
+                            <button class="upgrade-btn">Get Premium</button>
+                            <div class="user-profile">
+                                <img src="https://ui-avatars.com/api/?name=User&background=random" alt="User">
+                            </div>
+                        </div>
+                    </header>
+                    <div class="content-scroll" id="content-area">
+                        <h2 id="section-title" class="neon-text">Discover</h2>
+                        
+                        <div class="loading-spinner hidden" id="loader">
+                            <div class="spinner"></div>
+                        </div>
+
+                        <div class="album-grid" id="songs-grid">
+                            <!-- Songs will be injected here via JS -->
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Player Bar -->
+            <div class="player-bar glass-panel">
+                <div class="now-playing">
+                    <div class="cover-wrapper">
+                        <img id="current-cover" src="https://via.placeholder.com/60" alt="Cover" class="hidden">
+                        <div class="cover-glow hidden" id="cover-glow"></div>
+                    </div>
+                    <div class="track-info">
+                        <div id="current-title" class="title">Select a track to play</div>
+                        <div id="current-artist" class="artist">---</div>
+                    </div>
+                    <i class="far fa-heart like-icon hidden" id="like-btn"></i>
+                </div>
+                
+                <div class="player-controls">
+                    <div class="control-buttons">
+                        <button class="control-btn"><i class="fas fa-random"></i></button>
+                        <button class="control-btn" id="prev-btn"><i class="fas fa-step-backward"></i></button>
+                        <button class="control-btn play-pause-btn" id="main-play-btn"><i class="fas fa-play"></i></button>
+                        <button class="control-btn" id="next-btn"><i class="fas fa-step-forward"></i></button>
+                        <button class="control-btn"><i class="fas fa-redo-alt"></i></button>
+                    </div>
+                    <div class="progress-container">
+                        <span id="current-time">0:00</span>
+                        <div class="progress-bar" id="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                        <span id="total-time">0:30</span>
+                    </div>
+                </div>
+
+                <div class="volume-controls">
+                    <i class="fas fa-volume-up"></i>
+                    <div class="volume-bar" id="volume-bar">
+                        <div class="volume-fill" id="volume-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <audio id="audio-player"></audio>
+    <script src="app.js"></script>
+</body>
+</html>
