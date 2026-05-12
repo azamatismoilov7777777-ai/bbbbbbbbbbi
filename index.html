@@ -9,7 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="animated-bg"></div>
+    <div class="animated-bg">
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <div class="bg-blob blob-3"></div>
+    </div>
     <div class="glass-overlay"></div>
 
     <div id="app">
@@ -19,16 +23,16 @@
                 <div class="logo-glow">
                     <i class="fas fa-headphones-alt auth-logo"></i>
                 </div>
-                <h2>Welcome to VibeStream</h2>
-                <p class="subtitle">Experience music like never before</p>
+                <h2>VibeStream</h2>
+                <p class="subtitle">Premium Sound Architecture</p>
                 <form id="login-form">
                     <div class="input-group">
-                        <input type="text" id="username" placeholder="Username or Email" required>
+                        <input type="text" id="username" placeholder="Username" required>
                     </div>
                     <div class="input-group">
                         <input type="password" id="password" placeholder="Password" required>
                     </div>
-                    <button type="submit" class="gradient-btn">ENTER VIBE</button>
+                    <button type="submit" class="gradient-btn">UNLOCK SOUND</button>
                 </form>
             </div>
         </div>
@@ -42,18 +46,21 @@
                         <i class="fas fa-headphones-alt"></i> <span>VibeStream</span>
                     </div>
                     <ul class="nav-links">
-                        <li class="active" data-view="home"><i class="fas fa-home"></i> <span>Home</span></li>
+                        <li class="active" data-view="home"><i class="fas fa-compass"></i> <span>Discover</span></li>
                         <li data-view="search"><i class="fas fa-search"></i> <span>Search</span></li>
-                        <li data-view="library"><i class="fas fa-book-open"></i> <span>Library</span></li>
+                        <li data-view="library"><i class="fas fa-heart"></i> <span>Library</span></li>
                     </ul>
                     <hr class="sidebar-divider">
                     <div class="playlists-scroll">
-                        <h4>YOUR PLAYLISTS</h4>
+                        <h4>GENRES</h4>
+                        <p class="playlist-item" data-query="pop hits">Pop Hits</p>
+                        <p class="playlist-item" data-query="rock">Rock</p>
+                        <p class="playlist-item" data-query="rap">Rap & Hip Hop</p>
+                        <p class="playlist-item" data-query="classical">Classical</p>
                         <p class="playlist-item" data-query="lofi">Lofi Chill</p>
-                        <p class="playlist-item" data-query="pop hits">Top Hits</p>
-                        <p class="playlist-item" data-query="synthwave">Synthwave</p>
-                        <p class="playlist-item" data-query="jazz">Late Night Jazz</p>
-                        <p class="playlist-item" data-query="rock">Rock Classics</p>
+                        <p class="playlist-item" data-query="electronic">Electronic</p>
+                        <p class="playlist-item" data-query="jazz">Jazz</p>
+                        <p class="playlist-item" data-query="country">Country</p>
                     </div>
                 </aside>
 
@@ -62,12 +69,12 @@
                     <header class="topbar">
                         <div class="search-container hidden" id="search-bar-container">
                             <i class="fas fa-search search-icon"></i>
-                            <input type="text" id="search-input" placeholder="Search for artists, songs, or albums...">
+                            <input type="text" id="search-input" placeholder="Artist, songs, or albums...">
                         </div>
                         <div class="topbar-user">
-                            <button class="upgrade-btn">Get Premium</button>
+                            <button class="upgrade-btn">PREMIUM</button>
                             <div class="user-profile">
-                                <img src="https://ui-avatars.com/api/?name=User&background=random" alt="User">
+                                <img src="https://ui-avatars.com/api/?name=Vibe+User&background=9d4edd&color=fff" alt="User">
                             </div>
                         </div>
                     </header>
@@ -79,7 +86,7 @@
                         </div>
 
                         <div class="album-grid" id="songs-grid">
-                            <!-- Songs will be injected here via JS -->
+                            <!-- Songs injected here -->
                         </div>
                     </div>
                 </main>
@@ -93,10 +100,10 @@
                         <div class="cover-glow hidden" id="cover-glow"></div>
                     </div>
                     <div class="track-info">
-                        <div id="current-title" class="title">Select a track to play</div>
-                        <div id="current-artist" class="artist">---</div>
+                        <div id="current-title" class="title">No Track Selected</div>
+                        <div id="current-artist" class="artist">Select music to start</div>
                     </div>
-                    <i class="far fa-heart like-icon hidden" id="like-btn"></i>
+                    <button class="control-btn fav-btn hidden" id="player-fav-btn"><i class="far fa-star"></i></button>
                 </div>
                 
                 <div class="player-controls">
@@ -116,12 +123,29 @@
                     </div>
                 </div>
 
-                <div class="volume-controls">
-                    <i class="fas fa-volume-up"></i>
-                    <div class="volume-bar" id="volume-bar">
-                        <div class="volume-fill" id="volume-fill"></div>
+                <div class="extra-controls">
+                    <button class="lyrics-btn" id="toggle-lyrics">LYRICS</button>
+                    <div class="volume-controls">
+                        <i class="fas fa-volume-up"></i>
+                        <div class="volume-bar" id="volume-bar">
+                            <div class="volume-fill" id="volume-fill"></div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lyrics Overlay -->
+    <div id="lyrics-overlay">
+        <i class="fas fa-times close-lyrics" id="close-lyrics"></i>
+        <div class="lyrics-content">
+            <div class="lyrics-header">
+                <h1 id="lyrics-title">Song Title</h1>
+                <p id="lyrics-artist">Artist Name</p>
+            </div>
+            <div class="lyrics-body" id="lyrics-body">
+                <p>Fetching lyrics...</p>
             </div>
         </div>
     </div>
